@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Módulo 6 · Vídeo 2 · Melhorando seus prompts</title>
+  <!-- Única dependência externa: Google Fonts (há fallback no CSS) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="deck" aria-label="Módulo 6, Vídeo 2: Melhorando seus prompts">
+
+  <!-- ===================== SLIDE 1 · ABERTURA ===================== -->
+  <section class="slide capa">
+    <div class="capa-grade">
+      <div>
+        <div class="capa-modulo">Módulo 6 · Vídeo 2</div>
+        <h1 class="capa-titulo">Melhorando seus prompts</h1>
+        <p class="capa-sub">Papel, limites, exemplo e ajustes</p>
+      </div>
+      <!-- Ilustração: painel com controles deslizantes (ajustes finos) -->
+      <svg class="ilustra" viewBox="0 0 600 480" width="540" height="432" aria-hidden="true">
+        <rect x="10" y="10" width="580" height="460" rx="40" fill="#fff" stroke="#218BC5" stroke-width="8"/>
+        <rect x="70" y="102" width="460" height="16" rx="8" fill="#F0F2F4"/>
+        <rect x="70" y="102" width="300" height="16" rx="8" fill="#01CDFF"/>
+        <circle cx="370" cy="110" r="32" fill="#fff" stroke="#01CDFF" stroke-width="10"/>
+        <rect x="70" y="232" width="460" height="16" rx="8" fill="#F0F2F4"/>
+        <rect x="70" y="232" width="160" height="16" rx="8" fill="#218BC5"/>
+        <circle cx="230" cy="240" r="32" fill="#fff" stroke="#218BC5" stroke-width="10"/>
+        <rect x="70" y="362" width="460" height="16" rx="8" fill="#F0F2F4"/>
+        <rect x="70" y="362" width="390" height="16" rx="8" fill="#1A1A1A"/>
+        <circle cx="460" cy="370" r="32" fill="#fff" stroke="#1A1A1A" stroke-width="10"/>
+      </svg>
+    </div>
+    <aside class="notes">Bloco 1 · 00:00–00:30 · Abertura do Vídeo 2. Retomar: no vídeo anterior vimos Tarefa + Contexto + Formato.</aside>
+  </section>
+
+  <!-- ===================== SLIDE 2 · MAPA DO VÍDEO ===================== -->
+  <section class="slide">
+    <h2 class="titulo">Já temos o básico</h2>
+    <div class="corpo">
+      <div class="mapa">
+        <div class="mapa-grupo">
+          <div class="mapa-rotulo">Já vimos</div>
+          <div class="bloco cor-tarefa">Tarefa</div>
+          <div class="bloco cor-contexto">Contexto</div>
+          <div class="bloco cor-formato" style="box-shadow: inset 0 0 0 4px var(--preto);">Formato</div>
+        </div>
+        <div class="seta">
+          <svg viewBox="0 0 60 60" width="60" height="60" aria-hidden="true"><path d="M8 30 h40 M34 16 l14 14 -14 14" fill="none" stroke="#9AA3AD" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="mapa-grupo grade">
+          <div class="mapa-rotulo">Neste vídeo</div>
+          <div class="bloco-fechado">?<div class="verso cor-opcional reveal"><span>Papel<small>opcional</small></span></div></div>
+          <div class="bloco-fechado">?<div class="verso cor-limites reveal">Limites</div></div>
+          <div class="bloco-fechado">?<div class="verso cor-opcional reveal"><span>Exemplo<small>opcional</small></span></div></div>
+          <div class="bloco-fechado">?<div class="verso cor-ajustes reveal">Ajustes</div></div>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">Bloco 1 · 00:30–01:15 · Mapa do vídeo: abrir os quatro cartões, um por vez (Papel, Limites, Exemplo, Ajustes).</aside>
+  </section>
+
+  <!-- ===================== SLIDE 3 · PAPEL, PÚBLICO E TOM ===================== -->
+  <section class="slide">
+    <h2 class="titulo">Quem responde e para quem</h2>
+    <div class="corpo">
+      <div class="prompt" style="text-align:center;">
+        <div class="campo-rotulo" style="justify-content:center;">Mesma pergunta</div>
+        “Explique o que é um átomo.”
+      </div>
+      <div class="duas-colunas">
+        <div class="publico-coluna reveal">
+          <span class="publico-tag">Para uma criança de 10 anos</span>
+          <div class="resposta simples">É uma pecinha minúscula que forma tudo à nossa volta.</div>
+        </div>
+        <div class="publico-coluna reveal">
+          <span class="publico-tag">Para um professor</span>
+          <div class="resposta tecnica">Menor unidade de um elemento químico: núcleo com prótons e nêutrons, cercado por elétrons.</div>
+        </div>
+      </div>
+      <p class="legenda">O papel é <strong>opcional</strong>. Use quando o nível da linguagem importa.</p>
+    </div>
+    <aside class="notes">Bloco 2 · 01:15–02:30 · Papel, público e tom. Mesma pergunta, respostas diferentes conforme para quem é. Ex. de papel: “Aja como um professor de Ciências”.</aside>
+  </section>
+
+  <!-- ===================== SLIDE 4 · LIMITES ===================== -->
+  <section class="slide">
+    <h2 class="titulo">Limites: diga onde parar</h2>
+    <div class="corpo">
+      <div class="limites-grade">
+        <span class="etiqueta cor-limites reveal">
+          <svg viewBox="0 0 48 48" width="48" height="48" aria-hidden="true"><rect x="4" y="18" width="40" height="12" rx="6" fill="none" stroke="#1A1A1A" stroke-width="4"/><rect x="4" y="18" width="24" height="12" rx="6" fill="#1A1A1A"/><path d="M32 8 v32" stroke="#1A1A1A" stroke-width="5" stroke-linecap="round"/></svg>
+          máximo de 5 itens
+        </span>
+        <span class="etiqueta cor-limites reveal">
+          <svg viewBox="0 0 48 48" width="48" height="48" aria-hidden="true"><rect x="4" y="18" width="40" height="12" rx="6" fill="none" stroke="#1A1A1A" stroke-width="4"/><rect x="4" y="18" width="24" height="12" rx="6" fill="#1A1A1A"/><path d="M32 8 v32" stroke="#1A1A1A" stroke-width="5" stroke-linecap="round"/></svg>
+          sem termos técnicos
+        </span>
+        <span class="etiqueta cor-limites reveal">
+          <svg viewBox="0 0 48 48" width="48" height="48" aria-hidden="true"><rect x="4" y="18" width="40" height="12" rx="6" fill="none" stroke="#1A1A1A" stroke-width="4"/><rect x="4" y="18" width="24" height="12" rx="6" fill="#1A1A1A"/><path d="M32 8 v32" stroke="#1A1A1A" stroke-width="5" stroke-linecap="round"/></svg>
+          em até 100 palavras
+        </span>
+        <span class="etiqueta cor-limites reveal">
+          <svg viewBox="0 0 48 48" width="48" height="48" aria-hidden="true"><rect x="4" y="18" width="40" height="12" rx="6" fill="none" stroke="#1A1A1A" stroke-width="4"/><rect x="4" y="18" width="24" height="12" rx="6" fill="#1A1A1A"/><path d="M32 8 v32" stroke="#1A1A1A" stroke-width="5" stroke-linecap="round"/></svg>
+          se não tiver certeza, avise
+        </span>
+      </div>
+      <div class="legenda-cores">
+        <span class="item"><span class="amostra cor-tarefa"></span>Tarefa</span>
+        <span class="item"><span class="amostra cor-contexto"></span>Contexto</span>
+        <span class="item"><span class="amostra cor-formato"></span>Formato</span>
+        <span class="item"><span class="amostra cor-limites"></span>Limites</span>
+      </div>
+    </div>
+    <aside class="notes">Bloco 3 · 02:30–03:30 · Limites dizem onde parar: tamanho, vocabulário, quantidade. “Se não tiver certeza, avise” ajuda a perceber quando conferir (aprofundado no Módulo 6).</aside>
+  </section>
+
+  <!-- ===================== SLIDE 5 · EXEMPLO ===================== -->
+  <section class="slide">
+    <h2 class="titulo">Mostre o resultado que você quer</h2>
+    <div class="corpo">
+      <div class="duas-colunas" style="align-items:center;">
+        <!-- Pessoa dizendo "Corte normal", com dúvida -->
+        <svg class="ilustra reveal" viewBox="0 0 600 300" width="600" height="300" aria-label="Pessoa pedindo um corte normal, sem referência">
+          <text x="150" y="58" text-anchor="middle" font-family="Arial Narrow, Arial, sans-serif" font-weight="800" font-size="72" fill="#E4636A">?</text>
+          <circle cx="150" cy="140" r="56" fill="#FFD9B8"/>
+          <path d="M94 136 Q96 78 150 80 Q204 78 206 136 Q178 108 150 112 Q122 108 94 136Z" fill="#1A1A1A"/>
+          <circle cx="131" cy="146" r="6" fill="#1A1A1A"/>
+          <circle cx="169" cy="146" r="6" fill="#1A1A1A"/>
+          <path d="M136 172 h28" stroke="#1A1A1A" stroke-width="5" stroke-linecap="round"/>
+          <path d="M56 300 Q56 210 150 210 Q244 210 244 300 Z" fill="#218BC5"/>
+          <path d="M290 70 h270 a26 26 0 0 1 26 26 v52 a26 26 0 0 1 -26 26 h-226 l-30 26 v-26 h-14 a26 26 0 0 1 -26 -26 v-52 a26 26 0 0 1 26 -26z" fill="#F0F2F4"/>
+          <text x="425" y="135" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="38" fill="#1A1A1A">“Corte normal”</text>
+        </svg>
+        <!-- Mesma pessoa mostrando uma foto de referência -->
+        <svg class="ilustra reveal" viewBox="0 0 600 300" width="600" height="300" aria-label="Pessoa mostrando uma foto de referência do corte">
+          <circle cx="150" cy="140" r="56" fill="#FFD9B8"/>
+          <path d="M94 136 Q96 78 150 80 Q204 78 206 136 Q178 108 150 112 Q122 108 94 136Z" fill="#1A1A1A"/>
+          <circle cx="131" cy="146" r="6" fill="#1A1A1A"/>
+          <circle cx="169" cy="146" r="6" fill="#1A1A1A"/>
+          <path d="M134 168 q16 12 32 0" fill="none" stroke="#1A1A1A" stroke-width="5" stroke-linecap="round"/>
+          <path d="M56 300 Q56 210 150 210 Q244 210 244 300 Z" fill="#218BC5"/>
+          <path d="M226 250 L318 196" stroke="#FFD9B8" stroke-width="24" stroke-linecap="round"/>
+          <!-- foto de referência -->
+          <rect x="310" y="40" width="230" height="220" rx="16" fill="#fff" stroke="#01CDFF" stroke-width="9"/>
+          <clipPath id="foto-corte"><rect x="315" y="45" width="220" height="210" rx="12"/></clipPath>
+          <g clip-path="url(#foto-corte)">
+            <path d="M360 262 Q360 206 425 206 Q490 206 490 262 Z" fill="#9AA3AD"/>
+            <circle cx="425" cy="150" r="46" fill="#FFD9B8"/>
+            <path d="M379 146 L384 106 L398 124 L410 94 L424 120 L438 92 L450 122 L462 104 L471 146 Q425 120 379 146 Z" fill="#1A1A1A"/>
+          </g>
+          <circle cx="540" cy="44" r="30" fill="#01CDFF"/>
+          <path d="M526 45 l10 10 18-20" fill="none" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="prompt reveal">Crie 3 perguntas neste modelo: “Qual é a função da clorofila? (resposta: absorver a luz do sol)”.</div>
+      <p class="legenda reveal" data-junto>O exemplo no prompt faz o papel da foto.</p>
+    </div>
+    <aside class="notes">Bloco 4 · 03:30–05:00 · Exemplo: no cabeleireiro, “corte normal” vira chute; a foto resolve. No prompt, um exemplo do resultado faz o papel da foto. É opcional.</aside>
+  </section>
+
+  <!-- ===================== SLIDE 6 · AJUSTAR, NÃO RECOMEÇAR ===================== -->
+  <section class="slide">
+    <h2 class="titulo">Ajuste, não recomece</h2>
+    <div class="corpo">
+      <div class="degraus">
+        <div class="degrau reveal">
+          <div class="pedido-ajuste">“Deixe mais curto.”</div>
+          <!-- resposta: poucas linhas -->
+          <svg viewBox="0 0 400 130" width="100%" height="130" aria-hidden="true">
+            <rect x="0" y="0" width="400" height="130" rx="18" fill="#F0F2F4"/>
+            <rect x="26" y="34" width="300" height="18" rx="9" fill="#218BC5"/>
+            <rect x="26" y="74" width="190" height="18" rx="9" fill="#218BC5" opacity=".55"/>
+          </svg>
+        </div>
+        <div class="degrau reveal">
+          <div class="pedido-ajuste">“Inclua uma analogia.”</div>
+          <!-- resposta: linhas + lâmpada -->
+          <svg viewBox="0 0 400 130" width="100%" height="130" aria-hidden="true">
+            <rect x="0" y="0" width="400" height="130" rx="18" fill="#F0F2F4"/>
+            <rect x="26" y="34" width="250" height="18" rx="9" fill="#218BC5"/>
+            <rect x="26" y="74" width="170" height="18" rx="9" fill="#218BC5" opacity=".55"/>
+            <circle cx="336" cy="56" r="28" fill="#01CDFF"/>
+            <rect x="322" y="86" width="28" height="18" rx="5" fill="#1A1A1A"/>
+          </svg>
+        </div>
+        <div class="degrau reveal">
+          <div class="pedido-ajuste">“Use linguagem mais simples.”</div>
+          <!-- resposta: blocos maiores e mais leves + carinha -->
+          <svg viewBox="0 0 400 130" width="100%" height="130" aria-hidden="true">
+            <rect x="0" y="0" width="400" height="130" rx="18" fill="#F0F2F4"/>
+            <rect x="26" y="30" width="220" height="26" rx="13" fill="#218BC5"/>
+            <rect x="26" y="74" width="150" height="26" rx="13" fill="#218BC5" opacity=".55"/>
+            <circle cx="336" cy="65" r="34" fill="#01CDFF"/>
+            <circle cx="324" cy="58" r="5" fill="#1A1A1A"/>
+            <circle cx="348" cy="58" r="5" fill="#1A1A1A"/>
+            <path d="M321 74 q15 13 30 0" fill="none" stroke="#1A1A1A" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="faixa-dupla reveal" data-junto>
+        <div class="grande">Assunto novo? Conversa nova.</div>
+        <div class="menor">Evite “melhore isso”: a IA não sabe o que melhorar.</div>
+      </div>
+    </div>
+    <aside class="notes">Bloco 5 · 05:00–06:45 · Ajustes na mesma conversa: cada pedido muda um ponto específico. Se der, mostrar um ajuste ao vivo na gravação de tela.</aside>
+  </section>
+
+  <!-- ===================== SLIDE 7 · PROMPTS QUE ECONOMIZAM ===================== -->
+  <section class="slide">
+    <h2 class="titulo">Prompts que economizam</h2>
+    <div class="corpo">
+      <div class="medidores">
+        <div class="medidor reveal">
+          <svg viewBox="0 0 300 170" width="300" height="170" aria-hidden="true">
+            <path d="M30 150 A120 120 0 0 1 270 150" fill="none" stroke="#E6E9ED" stroke-width="34" stroke-linecap="round"/>
+            <path d="M30 150 A120 120 0 0 1 270 150" fill="none" stroke="#E4636A" stroke-width="34" stroke-linecap="round" pathLength="100" stroke-dasharray="94 100"/>
+            <path d="M150 150 L254 104" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="150" cy="150" r="14" fill="#1A1A1A"/>
+          </svg>
+          <div class="medidor-rotulo">Pedido vago + várias tentativas</div>
+        </div>
+        <div class="medidor reveal">
+          <svg viewBox="0 0 300 170" width="300" height="170" aria-hidden="true">
+            <path d="M30 150 A120 120 0 0 1 270 150" fill="none" stroke="#E6E9ED" stroke-width="34" stroke-linecap="round"/>
+            <path d="M30 150 A120 120 0 0 1 270 150" fill="none" stroke="#01CDFF" stroke-width="34" stroke-linecap="round" pathLength="100" stroke-dasharray="28 100"/>
+            <path d="M150 150 L80 72" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="150" cy="150" r="14" fill="#1A1A1A"/>
+          </svg>
+          <div class="medidor-rotulo">Pedido claro de primeira</div>
+        </div>
+      </div>
+      <div class="dicas-icones reveal">
+        <div class="dica-icone">
+          <span class="icone"><svg viewBox="0 0 56 56" width="56" height="56" aria-hidden="true"><rect x="4" y="18" width="48" height="20" rx="4" fill="none" stroke="#218BC5" stroke-width="5"/><path d="M14 18 v9 M24 18 v6 M34 18 v9 M44 18 v6" stroke="#218BC5" stroke-width="4"/></svg></span>
+          peça o tamanho
+        </div>
+        <div class="dica-icone">
+          <span class="icone"><svg viewBox="0 0 56 56" width="56" height="56" aria-hidden="true"><path d="M8 10 h40 a4 4 0 0 1 4 4 v22 a4 4 0 0 1 -4 4 h-26 l-10 9 v-9 h-4 a4 4 0 0 1 -4 -4 v-22 a4 4 0 0 1 4 -4z" fill="#01CDFF"/><text x="28" y="34" text-anchor="middle" font-family="Arial Narrow, Arial, sans-serif" font-weight="800" font-size="24" fill="#1A1A1A">1</text></svg></span>
+          um assunto por conversa
+        </div>
+        <div class="dica-icone">
+          <span class="icone"><svg viewBox="0 0 56 56" width="56" height="56" aria-hidden="true"><rect x="10" y="4" width="36" height="48" rx="4" fill="#fff" stroke="#1A1A1A" stroke-width="4"/><path d="M17 15 h22 M17 37 h22 M17 45 h14" stroke="#9AA3AD" stroke-width="4" stroke-linecap="round"/><rect x="6" y="21" width="44" height="12" rx="3" fill="#01CDFF"/></svg></span>
+          cole só o trecho necessário
+        </div>
+        <div class="dica-icone">
+          <span class="icone"><svg viewBox="0 0 56 56" width="56" height="56" aria-hidden="true"><circle cx="28" cy="28" r="22" fill="none" stroke="#218BC5" stroke-width="5"/><circle cx="28" cy="28" r="12" fill="none" stroke="#218BC5" stroke-width="5"/><circle cx="28" cy="28" r="4" fill="#1A1A1A"/></svg></span>
+          seja específico logo de início
+        </div>
+      </div>
+      <p class="legenda reveal" data-junto><strong>Prompt bom economiza e melhora a resposta.</strong></p>
+    </div>
+    <aside class="notes">Bloco 6 · 06:45–08:30 · Retomar o Módulo 2 em UMA frase: o plano gratuito tem limite de uso, e cada tentativa gasta. Pedido claro de primeira economiza.</aside>
+  </section>
+
+  <!-- ===================== SLIDE 8 · O MODELO COMPLETO ===================== -->
+  <section class="slide">
+    <h2 class="titulo">O modelo completo</h2>
+    <div class="corpo">
+      <div class="modelo">
+        <div class="peca cor-opcional reveal">Papel<small>opcional</small></div>
+        <div class="mais reveal" data-junto>+</div>
+        <div class="peca cor-tarefa reveal">Tarefa</div>
+        <div class="mais reveal" data-junto>+</div>
+        <div class="peca cor-contexto reveal">Contexto</div>
+        <div class="mais reveal" data-junto>+</div>
+        <div class="peca cor-limites reveal">Limites</div>
+        <div class="mais reveal" data-junto>+</div>
+        <div class="peca cor-formato reveal">Formato</div>
+        <div class="mais reveal" data-junto>+</div>
+        <div class="peca cor-opcional reveal">Exemplo<small>opcional</small></div>
+      </div>
+      <div class="legenda-cores">
+        <span class="item"><span class="amostra cor-tarefa"></span>Tarefa</span>
+        <span class="item"><span class="amostra cor-contexto"></span>Contexto</span>
+        <span class="item"><span class="amostra cor-limites"></span>Limites</span>
+        <span class="item"><span class="amostra cor-formato"></span>Formato</span>
+        <span class="item"><span class="amostra cor-opcional"></span>Opcional</span>
+      </div>
+      <p class="legenda reveal" data-junto>Ponto de partida, não receita. <strong>Teste, observe e ajuste.</strong></p>
+      <div class="faixa reveal">Próximo vídeo: por que o prompt falha</div>
+    </div>
+    <aside class="notes">Bloco 7 · 08:30–10:00 · Montar o modelo bloco a bloco. Para ir além (só falado): a ordem das partes não importa muito, e cada ferramenta responde de um jeito.</aside>
+  </section>
+
+</main>
+<script src="assets/slides.js"></script>
+</body>
+</html>

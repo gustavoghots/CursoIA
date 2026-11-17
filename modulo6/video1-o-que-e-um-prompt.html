@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Módulo 6 · Vídeo 1 · O que é um prompt</title>
+  <!-- Única dependência externa: Google Fonts (há fallback no CSS) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="deck" aria-label="Módulo 6, Vídeo 1: O que é um prompt">
+
+  <!-- ===================== SLIDE 1 · CAPA ===================== -->
+  <section class="slide capa" data-rodape="IFSul Campus Pelotas · CSTSI · Atividade de Extensão II">
+    <div class="capa-grade">
+      <div>
+        <div class="capa-modulo">Mini curso de IA</div>
+        <h1 class="capa-titulo">Introdução a prompts</h1>
+        <p class="capa-sub">Módulo 6 · Vídeo 1: Como pedir à IA</p>
+        <div class="capa-autor"><span class="bolinha"></span><span class="rotulo">Apresentação:</span> Gustavo Fiss</div>
+      </div>
+      <!-- Ilustração: janela de conversa com campo de texto -->
+      <svg class="ilustra" viewBox="0 0 600 480" width="540" height="432" aria-hidden="true">
+        <rect x="10" y="10" width="580" height="460" rx="40" fill="#fff" stroke="#218BC5" stroke-width="8"/>
+        <rect x="250" y="60" width="290" height="70" rx="35" fill="#01CDFF"/>
+        <rect x="282" y="88" width="190" height="14" rx="7" fill="#1A1A1A" opacity=".55"/>
+        <rect x="60" y="160" width="340" height="124" rx="35" fill="#F0F2F4"/>
+        <rect x="92" y="192" width="262" height="14" rx="7" fill="#218BC5"/>
+        <rect x="92" y="222" width="222" height="14" rx="7" fill="#218BC5" opacity=".6"/>
+        <rect x="92" y="252" width="150" height="14" rx="7" fill="#218BC5" opacity=".35"/>
+        <rect x="50" y="360" width="500" height="72" rx="36" fill="#fff" stroke="#01CDFF" stroke-width="5"/>
+        <rect class="cursor-pisca" x="86" y="380" width="6" height="32" rx="2" fill="#1A1A1A"/>
+        <circle cx="508" cy="396" r="24" fill="#01CDFF"/>
+        <path d="M497 396 h20 M509 386 l9 10 -9 10" stroke="#1A1A1A" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <aside class="notes">Bloco 1 · 00:00–00:30 · Apresentação: quem sou e o que vamos ver nos 3 vídeos do Módulo 6.</aside>
+  </section>
+
+  <!-- ===================== SLIDE 2 · GANCHO ===================== -->
+  <section class="slide">
+    <h2 class="titulo">Como pedir à IA</h2>
+    <div class="corpo">
+      <p class="pergunta-gancho">Por que a mesma IA responde bem para um colega e mal para mim?</p>
+      <p class="legenda" style="text-align:left; font-size:44px;">Quase sempre, a diferença está no <strong>pedido</strong>.</p>
+    </div>
+    <aside class="notes">Bloco 1 · 00:30–01:15 · Gancho: deixar a pergunta no ar alguns segundos antes de ler a frase de baixo.</aside>
+  </section>
+
+  <!-- ===================== SLIDE 3 · O QUE É UM PROMPT ===================== -->
+  <section class="slide">
+    <h2 class="titulo">Prompt é o seu pedido</h2>
+    <div class="corpo">
+      <div class="tipos">
+        <!-- Pergunta -->
+        <div class="tipo reveal">
+          <svg viewBox="0 0 200 200" width="180" height="180" aria-hidden="true">
+            <circle cx="100" cy="100" r="86" fill="#fff" stroke="#01CDFF" stroke-width="12"/>
+            <path d="M72 78 a28 28 0 1 1 42 24 c-10 6 -14 12 -14 22 v6" fill="none" stroke="#1A1A1A" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="100" cy="152" r="9" fill="#1A1A1A"/>
+          </svg>
+          <span class="tipo-nome">Pergunta</span>
+        </div>
+        <!-- Instrução: lista com check -->
+        <div class="tipo reveal">
+          <svg viewBox="0 0 200 200" width="180" height="180" aria-hidden="true">
+            <rect x="30" y="18" width="140" height="168" rx="18" fill="#fff" stroke="#218BC5" stroke-width="10"/>
+            <rect x="74" y="8" width="52" height="24" rx="8" fill="#218BC5"/>
+            <path d="M52 66 l10 10 18 -20 M52 112 l10 10 18 -20 M52 158 l10 10 18 -20" fill="none" stroke="#01CDFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M94 68 h54 M94 114 h54 M94 160 h40" stroke="#1A1A1A" stroke-width="9" stroke-linecap="round"/>
+          </svg>
+          <span class="tipo-nome">Instrução</span>
+        </div>
+        <!-- Texto colado: folha com canto dobrado -->
+        <div class="tipo reveal">
+          <svg viewBox="0 0 200 200" width="180" height="180" aria-hidden="true">
+            <path d="M42 14 h80 l40 40 v130 a6 6 0 0 1 -6 6 h-114 a6 6 0 0 1 -6 -6 v-164 a6 6 0 0 1 6 -6z" fill="#fff" stroke="#1A1A1A" stroke-width="9" stroke-linejoin="round"/>
+            <path d="M122 14 v40 h40" fill="#F0F2F4" stroke="#1A1A1A" stroke-width="9" stroke-linejoin="round"/>
+            <path d="M60 84 h82 M60 110 h82 M60 136 h82 M60 162 h50" stroke="#218BC5" stroke-width="9" stroke-linecap="round"/>
+            <rect x="52" y="74" width="98" height="72" rx="8" fill="#01CDFF" opacity=".25"/>
+          </svg>
+          <span class="tipo-nome">Texto colado</span>
+        </div>
+      </div>
+      <p class="legenda">A IA não adivinha. <strong>Ela responde ao que você escreve.</strong></p>
+    </div>
+    <aside class="notes">Bloco 2 · 01:15–01:50 · Prompt = tudo o que eu escrevo para a IA: uma pergunta, uma instrução ou um texto colado.</aside>
+  </section>
+
+  <!-- ===================== SLIDE 4 · ANALOGIA DA CANTINA ===================== -->
+  <section class="slide">
+    <h2 class="titulo">É como pedir um lanche</h2>
+    <div class="corpo">
+      <div class="duas-colunas">
+        <!-- Pedido vago -->
+        <div class="pedido-resultado reveal">
+          <div class="prompt fraco" style="min-height:180px; display:grid; place-items:center;">“Um lanche.”</div>
+          <svg viewBox="0 0 40 60" width="34" height="52" aria-hidden="true"><path d="M20 4 v44 M8 36 l12 14 12-14" fill="none" stroke="#9AA3AD" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <!-- Prato com ponto de interrogação -->
+          <svg viewBox="0 0 320 230" width="320" height="230" aria-hidden="true">
+            <ellipse cx="160" cy="182" rx="140" ry="38" fill="#F0F2F4" stroke="#9AA3AD" stroke-width="6"/>
+            <ellipse cx="160" cy="176" rx="88" ry="20" fill="#fff" stroke="#C9CFD6" stroke-width="4"/>
+            <path d="M126 58 a34 34 0 1 1 52 29 c-12 7 -18 14 -18 26 v6" fill="none" stroke="#E4636A" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="160" cy="148" r="10" fill="#E4636A"/>
+          </svg>
+          <p class="legenda">Pedido vago: <strong>o atendente chuta.</strong></p>
+        </div>
+        <!-- Pedido claro -->
+        <div class="pedido-resultado reveal">
+          <div class="prompt" style="min-height:180px; display:grid; place-items:center;">“Pão com queijo, sem tomate, para levar.”</div>
+          <svg viewBox="0 0 40 60" width="34" height="52" aria-hidden="true"><path d="M20 4 v44 M8 36 l12 14 12-14" fill="none" stroke="#9AA3AD" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <!-- Sanduíche pronto numa embalagem -->
+          <svg viewBox="0 0 320 230" width="320" height="230" aria-hidden="true">
+            <!-- pão de baixo, queijo e pão de cima, saindo da embalagem -->
+            <rect x="84" y="104" width="152" height="30" rx="12" fill="#F2C57C" stroke="#B9822F" stroke-width="5"/>
+            <polygon points="80,88 240,88 232,112 214,98 194,114 174,98 154,114 134,98 114,114 94,100" fill="#FFD84D" stroke="#D9A800" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M84 90 Q160 6 236 90 Z" fill="#F2C57C" stroke="#B9822F" stroke-width="5" stroke-linejoin="round"/>
+            <polygon points="58,128 262,128 242,222 78,222" fill="#fff" stroke="#218BC5" stroke-width="7" stroke-linejoin="round"/>
+            <polygon points="64,158 256,158 251,182 69,182" fill="#01CDFF"/>
+            <circle cx="268" cy="54" r="30" fill="#01CDFF"/>
+            <path d="M254 55 l10 10 18-20" fill="none" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p class="legenda">Pedido claro: <strong>acerta de primeira.</strong></p>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">Bloco 2 · 01:50–02:25 · Analogia da cantina: o atendente não lê pensamento. Quanto mais claro o pedido, menos chute.</aside>
+  </section>
+
+  <!-- ===================== SLIDE 5 · MESMO TEMA, DOIS PEDIDOS ===================== -->
+  <section class="slide">
+    <h2 class="titulo">O mesmo tema, dois pedidos</h2>
+    <div class="corpo">
+      <div class="duas-colunas">
+        <div class="reveal">
+          <div class="cabeca-coluna">
+            <span class="marca erro"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M11 11 L29 29 M29 11 L11 29" stroke="#fff" stroke-width="7" stroke-linecap="round"/></svg></span>
+            Pedido vago
+          </div>
+          <div class="prompt fraco">Explique fotossíntese.</div>
+        </div>
+        <div class="reveal">
+          <div class="cabeca-coluna">
+            <span class="marca ok"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 21 L17 30 L33 11" fill="none" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Pedido claro
+          </div>
+          <div class="prompt">Explique a fotossíntese para o 1º ano do médio, em até 150 palavras, com um exemplo do dia a dia.</div>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">Bloco 2 · 02:25–03:00 · Mesmo assunto, pedidos diferentes. Na sequência vamos testar os dois ao vivo.</aside>
+  </section>
+
+  <!-- ===================== SLIDE 6 · DEMONSTRAÇÃO AO VIVO ===================== -->
+  <section class="slide">
+    <h2 class="titulo">Vamos comparar ao vivo</h2>
+    <div class="corpo">
+      <div class="moldura">
+        <!-- Moldura de navegador vazia, para sobrepor a gravação de tela -->
+        <svg viewBox="0 0 1400 620" width="1400" height="620" aria-label="Espaço para a gravação de tela">
+          <rect x="5" y="5" width="1390" height="610" rx="28" fill="#fff" stroke="#1A1A1A" stroke-width="6"/>
+          <path d="M5 95 V33 a28 28 0 0 1 28 -28 H1367 a28 28 0 0 1 28 28 V95 Z" fill="#F0F2F4"/>
+          <line x1="5" y1="95" x2="1395" y2="95" stroke="#1A1A1A" stroke-width="4"/>
+          <rect x="5" y="5" width="1390" height="610" rx="28" fill="none" stroke="#1A1A1A" stroke-width="6"/>
+          <circle cx="52" cy="50" r="13" fill="#E4636A"/>
+          <circle cx="92" cy="50" r="13" fill="#F5A623"/>
+          <circle cx="132" cy="50" r="13" fill="#01CDFF"/>
+          <rect x="190" y="28" width="920" height="44" rx="22" fill="#fff" stroke="#C9CFD6" stroke-width="3"/>
+          <circle cx="560" cy="358" r="16" fill="#E4636A"/>
+          <text x="590" y="374" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="600" fill="#9AA3AD">Gravação de tela</text>
+        </svg>
+      </div>
+    </div>
+    <aside class="notes">Bloco 3 · 03:00–05:00 · Demonstração ao vivo: colar o pedido vago e o claro do slide anterior e comparar as respostas. Testar os dois pedidos antes de gravar.</aside>
+  </section>
+
+  <!-- ===================== SLIDE 7 · AS TRÊS PARTES ===================== -->
+  <section class="slide">
+    <h2 class="titulo">Tarefa + Contexto + Formato</h2>
+    <div class="corpo">
+      <div class="tres-colunas">
+        <div class="cartao reveal" style="border-color:var(--ciano);">
+          <div class="cartao-topo cor-tarefa">Tarefa</div>
+          <div class="cartao-texto">O que eu quero que a IA faça?</div>
+        </div>
+        <div class="cartao reveal" style="border-color:var(--azul);">
+          <div class="cartao-topo cor-contexto">Contexto</div>
+          <div class="cartao-texto">Para quem e em que situação?</div>
+        </div>
+        <div class="cartao reveal" style="border-color:var(--preto);">
+          <div class="cartao-topo cor-formato">Formato</div>
+          <div class="cartao-texto">Como quero receber a resposta?</div>
+        </div>
+      </div>
+      <p class="frase-chave reveal">Tarefa diz o que fazer, contexto diz para quem, formato diz como entregar.</p>
+    </div>
+    <aside class="notes">Bloco 4 · 05:00–06:45 · As três partes. Uma pergunta para cada cartão; a frase-chave é o 4º avanço, depois dos três cartões.</aside>
+  </section>
+
+  <!-- ===================== SLIDE 8 · NA PRÁTICA ===================== -->
+  <section class="slide" data-colorir>
+    <h2 class="titulo">Na prática</h2>
+    <div class="corpo">
+      <div class="prompt reveal">
+        <div class="campo-rotulo">
+          <svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><circle cx="20" cy="13" r="8" fill="#218BC5"/><path d="M5 38 a15 13 0 0 1 30 0z" fill="#218BC5"/></svg>
+          Professor
+        </div>
+        <span class="parte p-tarefa">Crie 5 questões de múltipla escolha sobre a Revolução Francesa</span>
+        <span class="parte p-contexto">para o 9º ano</span>,
+        <span class="parte p-formato">com gabarito no final</span>.
+      </div>
+      <div class="prompt reveal">
+        <div class="campo-rotulo">
+          <svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><circle cx="20" cy="13" r="8" fill="#01CDFF"/><path d="M5 38 a15 13 0 0 1 30 0z" fill="#01CDFF"/></svg>
+          Aluno
+        </div>
+        <span class="parte p-tarefa">Me ajude a estudar Geografia</span>.
+        <span class="parte p-contexto">Sou do 8º ano e o assunto é clima</span>.
+        <span class="parte p-formato">Faça um resumo em tópicos curtos</span>.
+      </div>
+      <!-- Este passo colore as partes (ver .passo-cores no CSS) -->
+      <div class="legenda-cores reveal passo-cores">
+        <span class="item"><span class="amostra cor-tarefa"></span>Tarefa</span>
+        <span class="item"><span class="amostra cor-contexto"></span>Contexto</span>
+        <span class="item"><span class="amostra cor-formato"></span>Formato</span>
+      </div>
+    </div>
+    <aside class="notes">Bloco 4 · 06:45–08:45 · Ler os dois pedidos; no 3º avanço as partes ganham cor. Mostrar que professor e aluno usam a mesma estrutura.</aside>
+  </section>
+
+  <!-- ===================== SLIDE 9 · FECHAMENTO ===================== -->
+  <section class="slide">
+    <h2 class="titulo">O que levar</h2>
+    <div class="corpo">
+      <div class="item-icone reveal">
+        <span class="icone">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><path d="M8 12 h48 a4 4 0 0 1 4 4 v26 a4 4 0 0 1 -4 4 h-30 l-12 10 v-10 h-6 a4 4 0 0 1 -4 -4 v-26 a4 4 0 0 1 4 -4z" fill="#01CDFF"/><path d="M18 26 h28 M18 34 h18" stroke="#1A1A1A" stroke-width="5" stroke-linecap="round"/></svg>
+        </span>
+        Prompt é o seu pedido
+      </div>
+      <div class="item-icone reveal">
+        <span class="icone">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><circle cx="32" cy="32" r="24" fill="none" stroke="#218BC5" stroke-width="6"/><path d="M24 24 a8 8 0 1 1 12 7 c-3 2 -4 3 -4 7" fill="none" stroke="#218BC5" stroke-width="5" stroke-linecap="round"/><circle cx="32" cy="45" r="3" fill="#218BC5"/><path d="M12 52 L52 12" stroke="#E4636A" stroke-width="6" stroke-linecap="round"/></svg>
+        </span>
+        A IA não adivinha
+      </div>
+      <div class="item-icone reveal">
+        <span class="icone">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><rect x="8" y="10" width="48" height="12" rx="6" fill="#01CDFF"/><rect x="8" y="27" width="48" height="12" rx="6" fill="#218BC5"/><rect x="8" y="44" width="48" height="12" rx="6" fill="#1A1A1A"/></svg>
+        </span>
+        Tarefa + Contexto + Formato
+      </div>
+      <div class="faixa reveal">Próximo vídeo: e se a resposta vier quase boa?</div>
+    </div>
+    <aside class="notes">Bloco 5 · 08:45–10:00 · Resumo em três ideias e convite para o Vídeo 2.</aside>
+  </section>
+
+</main>
+<script src="assets/slides.js"></script>
+</body>
+</html>

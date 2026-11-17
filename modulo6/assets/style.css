@@ -1,0 +1,1129 @@
+/* ==========================================================================
+   Módulo 6 · INTRODUÇÃO A PROMPTS — estilos compartilhados dos slides
+   Referência: 1920x1080 (16:9). O JS escala o .deck para caber na tela.
+   Sem frameworks e sem imagens externas. Única dependência: Google Fonts
+   (com fallback para "Arial Narrow" / Arial se a fonte não carregar).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Tokens (cores, fontes, medidas)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Identidade do curso */
+  --ciano: #01CDFF;          /* destaque principal e "certo/bom" */
+  --azul: #218BC5;           /* secundário */
+  --preto: #1A1A1A;          /* texto */
+  --erro: #E4636A;           /* usado SÓ para "errado/fraco" */
+  --branco: #FFFFFF;
+
+  /* Convenção das partes do prompt (igual nos 3 vídeos) */
+  --c-tarefa: var(--ciano);  /* Tarefa  = ciano */
+  --c-contexto: var(--azul); /* Contexto = azul */
+  --c-formato: #E6E9ED;      /* Formato = preto sobre cinza claro */
+  --c-limites: #F5A623;      /* Limites = laranja claro */
+
+  /* Neutros de apoio */
+  --cinza-claro: #F0F2F4;
+  --cinza-borda: #C9CFD6;
+  --cinza-medio: #9AA3AD;
+  --cinza-texto: #4A5058;    /* contraste ~8:1 sobre branco */
+
+  /* Tipografia */
+  --f-titulo: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-corpo: "Inter", "Barlow", "Segoe UI", Arial, sans-serif;
+  --t-corpo: 36px;           /* corpo padrão (mínimo exigido: 32px) */
+  --t-min: 32px;             /* menor tamanho permitido para conteúdo */
+
+  /* Medidas do slide */
+  --pad-topo: 92px;
+  --pad-lado: 140px;
+  --pad-base: 160px;         /* deixa livre a área do rodapé e do canto */
+  --raio: 28px;
+  --transicao: 300ms;
+}
+
+/* --------------------------------------------------------------------------
+   2. Base e palco (letterbox)
+   -------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #16181B;       /* faixas de letterbox fora do slide */
+  color: var(--preto);
+  font-family: var(--f-corpo);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* O deck tem sempre 1920x1080 e é centralizado/escalado pelo JS */
+.deck {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1920px;
+  height: 1080px;
+  transform: translate(-50%, -50%) scale(var(--escala, 0.5));
+  transform-origin: center center;
+  background: var(--branco);
+  overflow: hidden;
+  font-size: var(--t-corpo);
+  line-height: 1.35;
+}
+
+/* Barra de progresso fina no topo (injetada pelo JS) */
+.progresso {
+  position: absolute;
+  left: 0; top: 0;
+  height: 8px;
+  width: 0;
+  background: var(--ciano);
+  z-index: 20;
+  transition: width var(--transicao) ease;
+}
+
+/* --------------------------------------------------------------------------
+   3. Slide
+   -------------------------------------------------------------------------- */
+.slide {
+  position: absolute;
+  inset: 0;
+  padding: var(--pad-topo) var(--pad-lado) var(--pad-base);
+  display: flex;
+  flex-direction: column;
+  background: var(--branco);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transicao) ease, visibility 0s linear var(--transicao);
+}
+.slide.ativo {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--transicao) ease, visibility 0s;
+  z-index: 1;
+}
+
+/* Bloco de gradiente no canto inferior direito (quarto de círculo) */
+.canto {
+  position: absolute;
+  right: 0; bottom: 0;
+  width: 200px; height: 200px;
+  border-top-left-radius: 100%;
+  background: linear-gradient(135deg, var(--ciano) 0%, var(--azul) 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+.slide.capa .canto { width: 460px; height: 460px; }
+
+/* Rodapé discreto e número do slide (isentos do mínimo de 32px) */
+.rodape {
+  position: absolute;
+  left: var(--pad-lado);
+  bottom: 52px;
+  font-family: var(--f-titulo);
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6B727B;
+}
+.num-slide {
+  position: absolute;
+  right: 34px;
+  bottom: 30px;
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--branco);
+  z-index: 1;
+}
+
+/* Título: CAIXA ALTA, condensada, com traço ciano */
+.titulo {
+  margin: 0 0 44px;
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 92px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.titulo::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 10px;
+  margin-top: 22px;
+  border-radius: 5px;
+  background: var(--ciano);
+}
+
+/* Área de conteúdo: ocupa o resto do slide e centraliza verticalmente */
+.corpo {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 44px;
+  position: relative;
+  z-index: 2;
+}
+.corpo.topo { justify-content: flex-start; }
+
+/* Notas do apresentador: nunca aparecem no slide (vão para o painel da tecla N) */
+.notes { display: none !important; }
+
+/* --------------------------------------------------------------------------
+   4. Revelação passo a passo [REVELAR]
+   -------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--transicao) ease, transform var(--transicao) ease;
+}
+.reveal.visivel {
+  opacity: 1;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. Capa e slides de abertura
+   -------------------------------------------------------------------------- */
+.slide.capa { justify-content: center; }
+.capa-grade {
+  display: grid;
+  grid-template-columns: 1fr 600px;
+  align-items: center;
+  gap: 60px;
+  position: relative;
+  z-index: 2;
+}
+.capa-modulo {
+  display: inline-block;
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--preto);
+  background: var(--ciano);
+  padding: 6px 22px;
+  border-radius: 10px;
+  margin-bottom: 34px;
+}
+.capa-titulo {
+  margin: 0;
+  font-family: var(--f-titulo);
+  font-weight: 800;
+  font-size: 150px;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+.capa-sub {
+  margin: 36px 0 0;
+  font-size: 46px;
+  font-weight: 500;
+  color: var(--cinza-texto);
+}
+.capa-autor {
+  margin-top: 56px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 36px;
+  font-weight: 600;
+}
+.capa-autor .bolinha {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--azul);
+}
+.capa-autor span.rotulo {
+  font-weight: 400;
+  color: var(--cinza-texto);
+}
+
+/* --------------------------------------------------------------------------
+   6. Componentes: campo de prompt, resposta, marcas ✓/✗
+   -------------------------------------------------------------------------- */
+
+/* Campo de texto / balão de prompt (borda ciano = bom; .fraco = erro) */
+.prompt {
+  position: relative;
+  background: var(--branco);
+  border: 4px solid var(--ciano);
+  border-radius: var(--raio);
+  padding: 28px 40px 30px;
+  font-size: 36px;
+  line-height: 1.5;
+  box-shadow: 0 10px 0 rgba(1, 205, 255, 0.16);
+}
+.prompt.fraco {
+  border-color: var(--erro);
+  box-shadow: 0 10px 0 rgba(228, 99, 106, 0.16);
+}
+.prompt.grande { font-size: 44px; padding: 36px 48px; }
+
+/* Rótulo acima do texto do campo (ex.: "Professor") */
+.campo-rotulo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 8px;
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 34px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cinza-texto);
+}
+.campo-rotulo svg { flex: none; }
+
+/* Balão de resposta da IA (cinza, canto inferior esquerdo "puxado") */
+.resposta {
+  background: var(--cinza-claro);
+  border-radius: var(--raio) var(--raio) var(--raio) 8px;
+  padding: 26px 36px;
+  font-size: 34px;
+  line-height: 1.45;
+}
+
+/* Marcas redondas ✓ e ✗ (SVG dentro) */
+.marca {
+  flex: none;
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.marca.erro { background: var(--erro); }
+.marca.ok { background: var(--ciano); }
+.marca svg { width: 40px; height: 40px; }
+
+/* Linha "marca + rótulo" acima de um campo */
+.cabeca-coluna {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 22px;
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 44px;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   7. Partes do prompt (convenção de cores) e legenda
+   -------------------------------------------------------------------------- */
+.parte {
+  padding: 0.04em 0.22em;
+  border-radius: 8px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-color var(--transicao) ease, color var(--transicao) ease, box-shadow var(--transicao) ease;
+}
+.p-tarefa   { background: var(--c-tarefa);   color: var(--preto); }
+.p-contexto { background: var(--c-contexto); color: var(--branco); }
+.p-formato  { background: var(--c-formato);  color: var(--preto); box-shadow: inset 0 0 0 3px var(--preto); }
+.p-limites  { background: var(--c-limites);  color: var(--preto); }
+
+/* Slides com data-colorir: as partes ficam neutras até o passo .passo-cores */
+.slide[data-colorir]:not(:has(.passo-cores.visivel)) .parte {
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+}
+
+/* Fundos sólidos das partes (cartões, blocos, etiquetas) */
+.cor-tarefa   { background: var(--c-tarefa);   color: var(--preto); }
+.cor-contexto { background: var(--c-contexto); color: var(--branco); }
+.cor-formato  { background: var(--c-formato);  color: var(--preto); }
+.cor-limites  { background: var(--c-limites);  color: var(--preto); }
+.cor-opcional { background: var(--branco); color: var(--cinza-texto); border: 4px dashed var(--cinza-medio); }
+.cor-ajustes  { background: var(--branco); color: var(--azul); border: 4px solid var(--azul); }
+
+/* Legenda das cores (aparece sempre que as cores são usadas) */
+.legenda-cores {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px 44px;
+  font-size: 32px;
+  font-weight: 600;
+}
+.legenda-cores .item { display: flex; align-items: center; gap: 14px; }
+.legenda-cores .amostra {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  flex: none;
+}
+.legenda-cores .amostra.cor-formato { box-shadow: inset 0 0 0 3px var(--preto); }
+.legenda-cores .amostra.cor-opcional { border-width: 3px; }
+
+/* --------------------------------------------------------------------------
+   8. Componentes genéricos
+   -------------------------------------------------------------------------- */
+.duas-colunas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: start;
+}
+.tres-colunas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  align-items: stretch;
+}
+
+/* Frase de apoio / legenda de slide */
+.legenda {
+  margin: 0;
+  text-align: center;
+  font-size: 38px;
+  font-weight: 500;
+  color: var(--cinza-texto);
+}
+.legenda strong { color: var(--preto); }
+
+/* Frase-chave com destaque lateral */
+.frase-chave {
+  margin: 0 auto;
+  padding: 18px 34px;
+  border-left: 10px solid var(--ciano);
+  background: var(--cinza-claro);
+  border-radius: 0 16px 16px 0;
+  font-size: 38px;
+  font-weight: 600;
+}
+
+/* Faixa ciano de "próximo vídeo" */
+.faixa {
+  background: var(--ciano);
+  color: var(--preto);
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 50px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 20px 40px;
+  border-radius: 18px;
+}
+
+/* Cartão simples com cabeçalho colorido */
+.cartao {
+  border-radius: var(--raio);
+  background: var(--branco);
+  border: 4px solid var(--cinza-borda);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.cartao .cartao-topo {
+  padding: 22px 32px;
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 58px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.cartao .cartao-texto {
+  padding: 30px 32px 36px;
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+/* Etiqueta (ex.: limites) */
+.etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 36px;
+  border-radius: 999px;
+  font-size: 42px;
+  font-weight: 700;
+}
+
+/* Ícone + texto curto em linha */
+.item-icone {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-size: 44px;
+  font-weight: 600;
+}
+.item-icone .icone {
+  flex: none;
+  width: 104px; height: 104px;
+  border-radius: 28px;
+  display: grid;
+  place-items: center;
+  background: var(--cinza-claro);
+}
+
+/* Seta entre elementos */
+.seta {
+  display: grid;
+  place-items: center;
+}
+
+/* Ilustrações SVG centralizadas */
+.ilustra { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+
+/* --------------------------------------------------------------------------
+   9. Estilos específicos por tipo de slide
+   -------------------------------------------------------------------------- */
+
+/* Gancho: pergunta grande em bloco ciano (texto preto = alto contraste) */
+.pergunta-gancho {
+  position: relative;
+  margin: 0;
+  background: var(--ciano);
+  color: var(--preto);
+  border-radius: 40px 40px 40px 10px;
+  padding: 50px 64px;
+  font-family: var(--f-titulo);
+  font-weight: 800;
+  font-size: 92px;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+/* Tipos de prompt (V1·S3) */
+.tipos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; }
+.tipo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  padding: 44px 24px 40px;
+  border-radius: var(--raio);
+  background: var(--cinza-claro);
+}
+.tipo-nome {
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 54px;
+  text-transform: uppercase;
+}
+
+/* Lado a lado com resultado ilustrado (V1·S4) */
+.pedido-resultado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+.pedido-resultado .prompt { width: 100%; text-align: center; }
+.pedido-resultado .legenda { font-size: 36px; }
+
+/* Moldura de navegador para a demonstração (V1·S6) */
+.moldura { display: flex; justify-content: center; }
+
+/* Mapa do vídeo (V2·S2) */
+.mapa {
+  display: grid;
+  grid-template-columns: 1fr 80px 1.45fr;
+  align-items: center;
+  gap: 24px;
+}
+.mapa-grupo { display: flex; flex-direction: column; gap: 22px; }
+.mapa-grupo.grade { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+.mapa-rotulo {
+  font-size: 34px;
+  font-weight: 600;
+  color: var(--cinza-texto);
+  text-align: center;
+  margin-bottom: 4px;
+}
+.mapa-grupo.grade .mapa-rotulo { grid-column: 1 / -1; }
+.bloco {
+  border-radius: 22px;
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 56px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 22px 20px;
+}
+.bloco-fechado {
+  position: relative;
+  height: 150px;
+  border-radius: 22px;
+  border: 4px dashed var(--cinza-medio);
+  background: var(--cinza-claro);
+  display: grid;
+  place-items: center;
+  font-family: var(--f-titulo);
+  font-weight: 800;
+  font-size: 90px;
+  color: var(--cinza-medio);
+}
+.bloco-fechado .verso {
+  position: absolute;
+  inset: -4px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  font-size: 56px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.bloco-fechado .verso small {
+  display: block;
+  font-family: var(--f-corpo);
+  font-size: 32px;
+  font-weight: 500;
+  text-transform: none;
+  margin-top: -8px;
+}
+
+/* Papel e público (V2·S3) */
+.publico-coluna { display: flex; flex-direction: column; gap: 22px; }
+.publico-tag {
+  align-self: flex-start;
+  font-size: 34px;
+  font-weight: 700;
+  padding: 10px 26px;
+  border-radius: 999px;
+  background: var(--azul);
+  color: var(--branco);
+}
+.resposta.simples { font-size: 40px; }
+.resposta.tecnica { font-size: 34px; }
+
+/* Limites (V2·S4) */
+.limites-grade {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px 56px;
+  justify-items: center;
+  align-items: center;
+}
+.limites-grade .etiqueta { width: 100%; justify-content: center; }
+
+/* Degraus (V2·S6 e V3·S6) */
+.degraus {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  align-items: end;
+}
+.degrau {
+  border-radius: var(--raio);
+  border: 4px solid var(--cinza-borda);
+  background: var(--branco);
+  padding: 26px 28px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+}
+.degrau:nth-child(1) { margin-bottom: 0; }
+.degrau:nth-child(2) { margin-bottom: 60px; }
+.degrau:nth-child(3) { margin-bottom: 120px; }
+.degrau .pedido-ajuste {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--preto);
+  background: var(--cinza-claro);
+  border-left: 8px solid var(--ciano);
+  padding: 12px 20px;
+  border-radius: 0 14px 14px 0;
+}
+.degrau .numero {
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--ciano);
+  font-family: var(--f-titulo);
+  font-weight: 800;
+  font-size: 50px;
+}
+.degrau .texto-degrau { font-size: 38px; font-weight: 600; line-height: 1.3; }
+
+.faixa-dupla {
+  text-align: center;
+  padding: 18px 36px;
+  border-radius: 18px;
+  background: var(--cinza-claro);
+}
+.faixa-dupla .grande {
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 52px;
+  text-transform: uppercase;
+}
+.faixa-dupla .menor { font-size: 34px; color: var(--cinza-texto); margin-top: 4px; }
+
+/* Medidores (V2·S7) */
+.medidores { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+.medidor { display: flex; align-items: center; gap: 30px; justify-content: center; }
+.medidor-rotulo { font-size: 36px; font-weight: 700; max-width: 360px; line-height: 1.25; }
+.dicas-icones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.dica-icone {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.dica-icone .icone {
+  flex: none;
+  width: 92px; height: 92px;
+  border-radius: 24px;
+  display: grid;
+  place-items: center;
+  background: var(--cinza-claro);
+}
+
+/* Modelo completo (V2·S8) */
+.modelo {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+}
+.modelo .peca {
+  flex: 1;
+  border-radius: 22px;
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 50px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 10px 8px;
+}
+.modelo .peca small {
+  font-family: var(--f-corpo);
+  font-size: 32px;
+  font-weight: 500;
+  text-transform: none;
+}
+.modelo .peca.cor-formato { box-shadow: inset 0 0 0 4px var(--preto); }
+.modelo .mais {
+  flex: none;
+  width: 54px;
+  display: grid;
+  place-items: center;
+  font-family: var(--f-titulo);
+  font-weight: 800;
+  font-size: 56px;
+  color: var(--cinza-medio);
+}
+
+/* Lista de erros (V3·S3) */
+.lista-erros { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 22px; }
+.lista-erros li {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 44px;
+  font-weight: 600;
+}
+.lista-erros .n {
+  flex: none;
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--ciano);
+  font-family: var(--f-titulo);
+  font-weight: 800;
+  font-size: 50px;
+}
+.lista-erros .ic { flex: none; width: 76px; height: 76px; }
+.lista-erros em { font-style: normal; color: var(--cinza-texto); }
+
+/* Antes e depois (V3·S4) */
+.tag-tipo {
+  align-self: flex-start;
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 46px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 8px 28px;
+  border-radius: 12px;
+  background: var(--cinza-claro);
+}
+.antes-depois {
+  display: grid;
+  grid-template-columns: 1fr 96px 1.35fr;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Selo "ERRO N · nome" acima do título nos slides de cada erro (V3) */
+.selo-erro {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  padding: 6px 24px 6px 6px;
+  border-radius: 999px;
+  background: var(--cinza-claro);
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 34px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.selo-erro .n {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--erro);
+  color: var(--branco);
+  font-size: 34px;
+}
+/* Dados pessoais destacados (falsos, só marcadores entre colchetes) */
+.dado {
+  font-weight: 700;
+  color: #B3363E;                /* vermelho escuro: contraste ~6:1 */
+  background: rgba(228, 99, 106, 0.14);
+  border-radius: 8px;
+  padding: 0 0.15em;
+}
+
+/* Peça ajuda (V3·S5) */
+.ajuda-grade {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 60px;
+  align-items: center;
+}
+.ajuda-grade .prompts { display: flex; flex-direction: column; gap: 40px; }
+
+/* Desafio (V3·S7) */
+.desafio-linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.selo {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 34px;
+  border: 7px solid var(--azul);
+  border-radius: 20px;
+  color: var(--azul);
+  font-family: var(--f-titulo);
+  font-weight: 800;
+  font-size: 66px;
+  letter-spacing: 0.04em;
+  transform: rotate(-4deg);
+  margin-left: 10px;
+}
+.dica {
+  font-size: 40px;
+  font-weight: 600;
+}
+.contagem {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.contagem .numero-contagem {
+  flex: none;
+  min-width: 130px;
+  font-family: var(--f-titulo);
+  font-weight: 800;
+  font-size: 64px;
+  color: var(--azul);
+}
+.contagem .trilho {
+  flex: 1;
+  height: 28px;
+  border-radius: 14px;
+  background: var(--cinza-claro);
+  overflow: hidden;
+}
+.contagem .barra {
+  height: 100%;
+  width: 100%;
+  border-radius: 14px;
+  background: linear-gradient(90deg, var(--ciano), var(--azul));
+  transform-origin: left center;
+}
+.contagem.visivel .barra { animation: contagem 10s linear forwards; }
+@keyframes contagem { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+
+/* Checklist e cartão modelo (V3·S8) */
+.checklist-grade {
+  display: grid;
+  grid-template-columns: 1fr 700px;
+  gap: 64px;
+  align-items: center;
+}
+.checklist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 22px; }
+.checklist li { display: flex; align-items: center; gap: 24px; font-size: 40px; font-weight: 600; }
+.checklist .caixa {
+  flex: none;
+  width: 60px; height: 60px;
+  border-radius: 14px;
+  border: 5px solid var(--ciano);
+  display: grid;
+  place-items: center;
+}
+.cartao-celular {
+  border: 6px solid var(--preto);
+  border-radius: 48px;
+  padding: 40px 40px 36px;
+  background: var(--branco);
+  box-shadow: 0 14px 0 rgba(1, 205, 255, 0.25);
+  position: relative;
+}
+.cartao-celular::before {
+  /* "alto-falante" do celular */
+  content: "";
+  position: absolute;
+  top: 16px; left: 50%;
+  width: 110px; height: 10px;
+  margin-left: -55px;
+  border-radius: 5px;
+  background: var(--preto);
+}
+.cartao-celular .cc-titulo {
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 8px 0 18px;
+}
+.cartao-celular .cc-texto { font-size: 36px; line-height: 1.6; }
+.cartao-celular .cc-rodape {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 3px solid var(--cinza-claro);
+  font-size: 32px;
+  color: var(--cinza-texto);
+  font-weight: 600;
+}
+
+/* Etiqueta de segurança com cadeado (V3·S2) */
+.seguranca {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 30px;
+  border-radius: 18px;
+  border: 4px solid var(--preto);
+  font-size: 34px;
+  font-weight: 700;
+  background: var(--branco);
+}
+
+/* Encerramento (V3·S9) */
+.slide.final { justify-content: center; align-items: center; text-align: center; }
+.frase-gigante {
+  margin: 0;
+  font-family: var(--f-titulo);
+  font-weight: 800;
+  font-size: 200px;
+  line-height: 1;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.frase-gigante .marca-texto {
+  background: linear-gradient(transparent 62%, var(--ciano) 62%, var(--ciano) 92%, transparent 92%);
+  padding: 0 0.06em;
+}
+.final .subfinal {
+  margin: 60px auto 0;
+  max-width: 1400px;
+  font-size: 42px;
+  font-weight: 500;
+  color: var(--cinza-texto);
+  position: relative;
+  z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   9b. Vídeo com câmera (deck com data-camera)
+       Moldura 16:9 (576x324) no canto inferior direito, no lugar do
+       quarto de círculo. O conteúdo fica numa coluna de até 1100px
+       (x 140–1240), longe da moldura (x 1288–1864, y 700–1024).
+   -------------------------------------------------------------------------- */
+.deck[data-camera] .canto { display: none; }
+.deck[data-camera] .corpo { max-width: 1100px; }
+.deck[data-camera] .num-slide {
+  top: 40px;
+  bottom: auto;
+  right: 56px;
+  font-size: 24px;
+  color: #6B727B;
+}
+.moldura-camera {
+  position: absolute;
+  right: 56px;
+  bottom: 56px;
+  width: 576px;
+  height: 324px;
+  padding: 8px;                          /* espessura da borda em gradiente */
+  border-radius: 28px;
+  background: linear-gradient(135deg, var(--ciano), var(--azul));
+  z-index: 3;
+}
+.moldura-camera span {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background: var(--cinza-claro);
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cinza-medio);
+}
+
+/* Trilha do curso (vídeo de introdução) */
+.trilha { display: flex; flex-direction: column; gap: 26px; }
+.trilha-item { display: flex; align-items: center; gap: 30px; }
+.trilha-chip {
+  flex: none;
+  width: 290px;
+  text-align: center;
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: var(--cinza-claro);
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.trilha-item.atual .trilha-chip { background: var(--ciano); }
+.trilha-texto { font-size: 36px; font-weight: 500; line-height: 1.3; }
+.trilha-item.atual .trilha-texto { font-weight: 700; }
+
+/* Lista dos vídeos do módulo */
+.lista-videos { display: flex; flex-direction: column; gap: 26px; }
+.video-item {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 20px 28px;
+  border: 4px solid var(--cinza-borda);
+  border-radius: var(--raio);
+}
+.video-item .numero {
+  flex: none;
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--ciano);
+  font-family: var(--f-titulo);
+  font-weight: 800;
+  font-size: 48px;
+}
+.video-item .v-titulo {
+  font-family: var(--f-titulo);
+  font-weight: 700;
+  font-size: 46px;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+.video-item .v-desc { font-size: 32px; color: var(--cinza-texto); margin-top: 4px; }
+
+/* --------------------------------------------------------------------------
+   10. Painel de notas (tecla N) — fora do slide, oculto por padrão
+   -------------------------------------------------------------------------- */
+.painel-notas {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  width: min(900px, 92vw);
+  padding: 14px 20px;
+  border-radius: 12px;
+  background: rgba(20, 22, 25, 0.92);
+  color: #fff;
+  font: 16px/1.45 var(--f-corpo);
+  z-index: 100;
+  display: none;
+}
+.painel-notas.aberto { display: block; }
+.painel-notas b { color: var(--ciano); }
+
+/* --------------------------------------------------------------------------
+   11. Acessibilidade: movimento reduzido
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .slide, .slide.ativo, .reveal, .parte, .progresso { transition: none !important; }
+  .reveal { transform: none; }
+  .cursor-pisca { animation: none !important; }
+}
+
+/* Cursor piscando nas ilustrações de campo de texto */
+.cursor-pisca { animation: pisca 1.1s steps(1) infinite; }
+@keyframes pisca { 50% { opacity: 0; } }
+
+/* --------------------------------------------------------------------------
+   12. Impressão / PDF: um slide por página, tudo revelado, sem notas
+   -------------------------------------------------------------------------- */
+@media print {
+  @page { size: 1920px 1080px; margin: 0; }
+  html, body {
+    width: 1920px;
+    height: auto;
+    overflow: visible;
+    background: #fff;
+  }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .deck {
+    position: static;
+    transform: none !important;
+    width: 1920px;
+    height: auto;
+    overflow: visible;
+  }
+  .slide {
+    position: relative;
+    inset: auto;
+    width: 1920px;
+    height: 1080px;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: none !important;
+    overflow: hidden;
+    break-after: page;
+    page-break-after: always;
+  }
+  .slide:last-child { break-after: auto; page-break-after: auto; }
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  /* Garante as partes coloridas no PDF */
+  .slide[data-colorir] .p-tarefa   { background: var(--c-tarefa) !important; color: var(--preto) !important; }
+  .slide[data-colorir] .p-contexto { background: var(--c-contexto) !important; color: var(--branco) !important; }
+  .slide[data-colorir] .p-formato  { background: var(--c-formato) !important; color: var(--preto) !important; box-shadow: inset 0 0 0 3px var(--preto) !important; }
+  .slide[data-colorir] .p-limites  { background: var(--c-limites) !important; color: var(--preto) !important; }
+  .contagem .barra { animation: none !important; transform: scaleX(0.6); }
+  .notes, .painel-notas, .progresso { display: none !important; }
+  .cursor-pisca { animation: none !important; }
+}

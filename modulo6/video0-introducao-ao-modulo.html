@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Módulo 6 · Introdução ao módulo</title>
+  <!-- Única dependência externa: Google Fonts (há fallback no CSS) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<!-- data-camera: reserva a moldura da câmera no canto inferior direito de todos os slides -->
+<main class="deck" data-camera aria-label="Módulo 6: introdução ao módulo">
+
+  <!-- ===================== SLIDE 1 · CAPA ===================== -->
+  <section class="slide capa" data-rodape="IFSul Campus Pelotas · CSTSI · Atividade de Extensão II">
+    <div class="corpo" style="justify-content:center;">
+      <div>
+        <div class="capa-modulo">Mini curso de IA</div>
+        <h1 class="capa-titulo">Introdução a prompts</h1>
+        <p class="capa-sub">Módulo 6 · Apresentação do módulo</p>
+        <div class="capa-autor"><span class="bolinha"></span><span class="rotulo">Apresentação:</span> Gustavo Fiss</div>
+      </div>
+    </div>
+    <aside class="notes">Bloco 1 · 00:00–00:20 · Oi! Quem sou e boas-vindas ao Módulo 6.</aside>
+  </section>
+
+  <!-- ===================== SLIDE 2 · CONTEXTO NO CURSO ===================== -->
+  <section class="slide">
+    <h2 class="titulo">Onde estamos no curso</h2>
+    <div class="corpo">
+      <div class="trilha">
+        <div class="trilha-item reveal">
+          <span class="trilha-chip">Módulos 1 a 4</span>
+          <span class="trilha-texto">O que é IA, como funciona, uso consciente e ferramentas</span>
+        </div>
+        <div class="trilha-item atual reveal">
+          <span class="trilha-chip">Módulo 6</span>
+          <span class="trilha-texto">Como pedir bem à IA</span>
+        </div>
+        <div class="trilha-item reveal">
+          <span class="trilha-chip">Módulos 6 e 7</span>
+          <span class="trilha-texto">Limites e ética · prática em sala de aula</span>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">Bloco 2 · 00:20–01:00 · Contexto: até aqui vimos o que é IA, como funciona, como usar com consciência e quais ferramentas existem. Agora: como pedir. Depois: limites/ética (Módulo 6) e prática (Módulo 7).</aside>
+  </section>
+
+  <!-- ===================== SLIDE 3 · POR QUE IMPORTA ===================== -->
+  <section class="slide">
+    <h2 class="titulo">Por que aprender a pedir?</h2>
+    <div class="corpo">
+      <p class="pergunta-gancho" style="font-size:68px; padding:40px 52px;">A IA não adivinha: a resposta depende do pedido.</p>
+      <div class="duas-colunas" style="gap:40px;">
+        <div class="cartao reveal">
+          <div class="cartao-topo" style="background:var(--cinza-claro); font-size:50px;">Alunos</div>
+          <div class="cartao-texto" style="font-size:36px;">Estudar, revisar e tirar dúvidas</div>
+        </div>
+        <div class="cartao reveal">
+          <div class="cartao-topo" style="background:var(--cinza-claro); font-size:50px;">Professores</div>
+          <div class="cartao-texto" style="font-size:36px;">Preparar aulas, atividades e materiais</div>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">Bloco 3 · 01:00–01:40 · Por que importa: a mesma ferramenta dá respostas muito diferentes conforme o pedido. Vale para quem estuda e para quem ensina.</aside>
+  </section>
+
+  <!-- ===================== SLIDE 4 · O QUE VAMOS APRENDER ===================== -->
+  <section class="slide">
+    <h2 class="titulo">O que você vai aprender</h2>
+    <div class="corpo">
+      <div class="lista-videos">
+        <div class="video-item reveal">
+          <span class="numero">1</span>
+          <div>
+            <div class="v-titulo">O que é um prompt</div>
+            <div class="v-desc">Tarefa + Contexto + Formato</div>
+          </div>
+        </div>
+        <div class="video-item reveal">
+          <span class="numero">2</span>
+          <div>
+            <div class="v-titulo">Melhorando seus prompts</div>
+            <div class="v-desc">Papel, limites, exemplo e ajustes</div>
+          </div>
+        </div>
+        <div class="video-item reveal">
+          <span class="numero">3</span>
+          <div>
+            <div class="v-titulo">Por que o prompt falha</div>
+            <div class="v-desc">Erros comuns e como consertar</div>
+          </div>
+        </div>
+      </div>
+      <p class="legenda" style="text-align:left;">3 vídeos de cerca de <strong>10 minutos</strong>.</p>
+    </div>
+    <aside class="notes">Bloco 4 · 01:40–02:30 · Roteiro do módulo: um vídeo por item. Ao final, você vai saber montar, melhorar e consertar um pedido.</aside>
+  </section>
+
+  <!-- ===================== SLIDE 5 · VAMOS COMEÇAR ===================== -->
+  <section class="slide">
+    <h2 class="titulo">Vamos começar?</h2>
+    <div class="corpo">
+      <div class="item-icone" style="font-size:40px;">
+        <span class="icone">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><rect x="6" y="10" width="52" height="38" rx="6" fill="none" stroke="#218BC5" stroke-width="5"/><path d="M22 56 h20 M32 48 v8" stroke="#218BC5" stroke-width="5" stroke-linecap="round"/><path d="M16 24 h22 M16 34 h14" stroke="#01CDFF" stroke-width="5" stroke-linecap="round"/></svg>
+        </span>
+        <span>Dica: deixe uma IA aberta e teste junto comigo.</span>
+      </div>
+      <p class="frase-chave" style="margin:0; font-family:var(--f-titulo); font-weight:800; font-size:64px; text-transform:uppercase;">IA apoia. Você decide.</p>
+      <div class="faixa reveal">Próximo: Vídeo 1 · O que é um prompt</div>
+    </div>
+    <aside class="notes">Bloco 5 · 02:30–03:00 · Convite: abrir uma ferramenta de IA para testar junto. Retomar a frase do curso e chamar o Vídeo 1.</aside>
+  </section>
+
+</main>
+<script src="assets/slides.js"></script>
+</body>
+</html>
