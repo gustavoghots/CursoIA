@@ -1,0 +1,565 @@
+/* =========================================================
+   Template de slides – Minicurso "Introdução à IA no Contexto Educacional"
+   Grupo 7 · Extensão II · IFSul CSTSI
+   Referência de tamanho: 1920x1080 (o JS escala para a tela)
+   ========================================================= */
+
+/* ---------- Identidade visual (variáveis) ---------- */
+:root {
+  --ciano: #01CDFF;          /* destaque principal */
+  --azul: #218BC5;           /* secundário */
+  --preto: #1A1A1A;          /* texto */
+  --branco: #FFFFFF;
+  --cinza: #8A949C;          /* rodapé e textos de apoio */
+  --cinza-linha: #E3E8EC;
+  --fundo-suave: #F3F7F9;    /* fundo de cartões */
+  --ciano-suave: #E3F8FF;    /* balões do aluno */
+  --vermelho-suave: #E2626B; /* ✗ e carimbos */
+  --gradiente: linear-gradient(135deg, var(--ciano), var(--azul));
+
+  --fonte-titulo: 'Barlow Condensed', 'Oswald', 'Arial Narrow', sans-serif;
+  --fonte-corpo: 'Inter', 'Barlow', Arial, sans-serif;
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--branco);
+}
+
+body {
+  font-family: var(--fonte-corpo);
+  color: var(--preto);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+/* Palco de 1920x1080; o slides.js aplica o scale para caber na janela */
+.deck {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1920px;
+  height: 1080px;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+  background: var(--branco);
+  overflow: hidden;
+}
+
+/* ---------- Barra de progresso (topo da janela) ---------- */
+.progresso {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 6px;
+  width: 0;
+  background: var(--ciano);
+  transition: width .3s ease;
+  z-index: 10;
+}
+
+/* ---------- Slide ---------- */
+.slide {
+  position: absolute;
+  inset: 0;
+  padding: 96px 140px 150px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(40px);
+  transition: opacity .3s ease, transform .3s ease, visibility .3s;
+}
+.slide.ativo   { opacity: 1; visibility: visible; transform: none; }
+.slide.passado { transform: translateX(-40px); }
+
+/* Área de conteúdo abaixo do título, centralizada na vertical */
+.conteudo {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ---------- Tipografia ---------- */
+.kicker {
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  font-size: 36px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--azul);
+  margin: 0 0 12px;
+}
+
+.titulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 84px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin: 0 0 36px;
+}
+/* filete ciano embaixo do título */
+.titulo::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 10px;
+  margin-top: 22px;
+  border-radius: 5px;
+  background: var(--ciano);
+}
+
+.subtitulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 44px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 24px;
+}
+
+p, li { font-size: 36px; line-height: 1.3; margin: 0; }
+
+/* "marca-texto" ciano: destaca palavras mantendo o texto preto legível */
+.marca-texto {
+  background: linear-gradient(transparent 58%, rgba(1, 205, 255, .55) 58%);
+  padding: 0 6px;
+}
+
+.centro { text-align: center; }
+
+/* ---------- Identidade do grupo: quarto de círculo em gradiente ---------- */
+.marca {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 200px;
+  height: 200px;
+  background: var(--gradiente);
+  border-top-left-radius: 100%;
+  pointer-events: none;
+}
+.marca.grande { width: 640px; height: 640px; }
+
+/* ---------- Rodapé ---------- */
+.rodape {
+  position: absolute;
+  left: 140px;
+  bottom: 48px;
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cinza);
+}
+.rodape .num { color: var(--azul); margin-left: 18px; }
+
+/* ---------- Revelação em sequência (fragments) ---------- */
+.fragment {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .4s ease, transform .4s ease;
+}
+.fragment.visivel { opacity: 1; transform: none; }
+
+/* ---------- Componentes ---------- */
+
+/* Grades */
+.grade-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+.grade-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 48px; }
+.grade-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+.grade-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+.grade-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; }
+
+/* Cartão com ícone */
+.card {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 36px 44px;
+  border-radius: 28px;
+  background: var(--fundo-suave);
+  border-left: 12px solid var(--ciano);
+  font-size: 36px;
+  line-height: 1.3;
+}
+.card .icone { font-size: 72px; flex: none; line-height: 1; }
+
+/* Faixa preta com destaque ciano (pergunta central, alertas) */
+.faixa {
+  background: var(--preto);
+  color: var(--branco);
+  border-radius: 24px;
+  padding: 30px 48px;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+}
+.faixa .ciano { color: var(--ciano); }
+
+/* Nota de apoio */
+.nota {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 44px;
+  font-size: 34px;
+  font-weight: 600;
+  color: var(--azul);
+}
+
+/* Painel com borda (colunas de comparação) */
+.painel {
+  border: 3px solid var(--cinza-linha);
+  border-radius: 32px;
+  padding: 32px 40px;
+  display: flex;
+  flex-direction: column;
+}
+.painel.destaque { border-color: var(--ciano); }
+
+.rotulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 42px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.rotulo .x  { color: var(--vermelho-suave); font-size: 52px; }
+.rotulo .ok { color: var(--azul); font-size: 52px; }
+
+/* Passos em sequência com setas */
+.passos { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
+.passos li {
+  background: var(--fundo-suave);
+  border-radius: 20px;
+  padding: 18px 28px;
+  font-size: 34px;
+  font-weight: 600;
+}
+.passos li + li { margin-top: 44px; position: relative; }
+.passos li + li::before {
+  content: '↓';
+  position: absolute;
+  top: -44px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 34px;
+  line-height: 44px;
+  color: var(--cinza);
+}
+.painel.destaque .passos li { background: var(--ciano-suave); }
+
+/* Passos numerados */
+.numerados { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 28px; }
+.numerados li { display: flex; align-items: center; gap: 28px; font-size: 36px; }
+.numerados .n {
+  flex: none;
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--gradiente);
+  color: var(--branco);
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 44px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Balões de chat */
+.chat { display: flex; flex-direction: column; gap: 18px; }
+.balao {
+  max-width: 90%;
+  padding: 16px 28px;
+  border-radius: 28px;
+  font-size: 32px;
+  line-height: 1.3;
+}
+.balao.aluno { align-self: flex-end; background: var(--ciano-suave); border-bottom-right-radius: 6px; }
+.balao.ia    { align-self: flex-start; background: #EEF1F3; border-bottom-left-radius: 6px; }
+.balao.ia::before {
+  content: 'IA';
+  display: inline-block;
+  margin-right: 14px;
+  padding: 2px 12px;
+  border-radius: 8px;
+  background: var(--azul);
+  color: var(--branco);
+  font-size: 22px;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+/* Comentário abaixo de um painel */
+.comentario { margin-top: auto; padding-top: 20px; font-size: 32px; font-weight: 600; color: var(--azul); }
+
+/* Selo "SIMULAÇÃO" */
+.selo {
+  position: absolute;
+  top: -24px;
+  left: 44px;
+  background: var(--preto);
+  color: var(--branco);
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: 3px;
+  padding: 6px 20px;
+  border-radius: 8px;
+}
+
+/* Cartão de citação / resposta simulada */
+.citacao {
+  position: relative;
+  background: #FAFBFC;
+  border: 3px dashed #C4CFD7;
+  border-radius: 28px;
+  padding: 52px 56px 44px;
+  font-size: 38px;
+  line-height: 1.4;
+}
+
+/* Carimbo (FALSO etc.) */
+.carimbo {
+  position: absolute;
+  right: 36px;
+  bottom: 28px;
+  border: 8px solid var(--vermelho-suave);
+  color: var(--vermelho-suave);
+  background: rgba(255, 255, 255, .9);
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 96px;
+  line-height: 1;
+  letter-spacing: 4px;
+  padding: 8px 32px;
+  border-radius: 16px;
+}
+.carimbo.fragment         { transform: rotate(-10deg) scale(1.6); }
+.carimbo.fragment.visivel { transform: rotate(-10deg) scale(1); }
+
+/* Octógono do método PARE */
+.octogono {
+  width: 170px; height: 170px;
+  margin: 0 auto 24px;
+  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+  background: var(--gradiente);
+  color: var(--branco);
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 120px;
+  display: flex; align-items: center; justify-content: center;
+}
+.letra-pare { text-align: center; }
+.letra-pare h3 {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 50px;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+.letra-pare p { font-size: 32px; }
+
+/* Degraus (bem escrito → plausível → comprovado) */
+.degraus { display: flex; align-items: flex-end; justify-content: center; gap: 32px; }
+.degrau {
+  width: 460px;
+  border-radius: 24px 24px 0 0;
+  padding: 24px 32px;
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+.degrau small {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--fonte-corpo);
+  font-weight: 500;
+  font-size: 30px;
+  text-transform: none;
+  line-height: 1.3;
+}
+.degrau.d1 { height: 180px; background: var(--fundo-suave); }
+.degrau.d2 { height: 240px; background: var(--ciano-suave); }
+.degrau.d3 { height: 300px; background: var(--gradiente); color: var(--branco); }
+.base-degraus { height: 10px; background: var(--preto); border-radius: 5px; }
+
+/* Chips com ícone grande */
+.chip {
+  text-align: center;
+  background: var(--fundo-suave);
+  border-radius: 28px;
+  padding: 40px 20px;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.chip .icone { display: block; font-size: 84px; line-height: 1; margin-bottom: 20px; }
+
+/* Círculos com ícone (resumo) */
+.item-trio { text-align: center; }
+.circulo {
+  width: 210px; height: 210px;
+  margin: 0 auto 32px;
+  border-radius: 50%;
+  background: var(--gradiente);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 100px;
+}
+.item-trio p { font-size: 40px; font-weight: 700; }
+
+/* Checklist com caixinhas */
+.checklist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 44px; }
+.checklist li { display: flex; align-items: center; gap: 40px; font-size: 60px; font-weight: 700; }
+.caixa {
+  flex: none;
+  width: 96px; height: 96px;
+  border: 8px solid var(--preto);
+  border-radius: 18px;
+  position: relative;
+}
+.caixa .marcado {
+  position: absolute;
+  inset: -8px;
+  border-radius: 18px;
+  background: var(--gradiente);
+  color: var(--branco);
+  font-size: 64px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Frase gigante do fechamento */
+.frase-gigante {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 128px;
+  line-height: 1.05;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+}
+
+/* Fórmula / equação em destaque */
+.equacao {
+  display: inline-block;
+  padding: 10px 36px;
+  border-radius: 20px;
+  background: var(--preto);
+  color: var(--ciano);
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 64px;
+  letter-spacing: 2px;
+}
+
+/* Linha com título à esquerda e algo à direita */
+.titulo-linha { display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; }
+
+/* Capa */
+.capa { justify-content: center; }
+.capa h1 {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 140px;
+  line-height: .98;
+  text-transform: uppercase;
+  max-width: 1150px;
+  margin: 0 0 40px;
+}
+.capa .barra { width: 160px; height: 14px; border-radius: 7px; background: var(--ciano); margin-bottom: 40px; }
+.capa .sub { font-size: 40px; font-weight: 600; margin-bottom: 16px; }
+.capa .apresentador { font-size: 36px; color: var(--azul); font-weight: 600; }
+.capa .instituicao {
+  position: absolute;
+  left: 140px;
+  bottom: 56px;
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  font-size: 30px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cinza);
+}
+.capa .ilustra-capa { position: absolute; right: 120px; bottom: 120px; width: 260px; }
+
+/* ---------- Variações compactas (slides que juntam duas ideias) ---------- */
+.card.compacto { padding: 22px 36px; font-size: 32px; gap: 24px; }
+.card.compacto .icone { font-size: 56px; }
+
+.passos.compacto li { padding: 12px 24px; }
+.passos.compacto li + li { margin-top: 32px; }
+.passos.compacto li + li::before { top: -32px; line-height: 32px; font-size: 28px; }
+
+/* passos numerados lado a lado */
+.passos-lado { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.passos-lado > div { display: flex; align-items: center; gap: 18px; font-size: 32px; line-height: 1.25; }
+.passos-lado .n {
+  flex: none;
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: var(--gradiente);
+  color: var(--branco);
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 38px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.chip.compacto { padding: 16px 12px; font-size: 30px; }
+.chip.compacto .icone { font-size: 52px; margin-bottom: 8px; }
+
+/* lista de ideias com círculo pequeno */
+.ideias { display: flex; flex-direction: column; gap: 28px; }
+.ideias > div { display: flex; align-items: center; gap: 28px; font-size: 38px; font-weight: 700; line-height: 1.2; }
+.ideias .circulo { width: 110px; height: 110px; margin: 0; font-size: 56px; flex: none; }
+
+.checklist.compacto { gap: 30px; }
+.checklist.compacto li { font-size: 40px; gap: 28px; line-height: 1.2; }
+.checklist.compacto .caixa { width: 72px; height: 72px; border-width: 6px; border-radius: 14px; }
+.checklist.compacto .caixa .marcado { inset: -6px; border-radius: 14px; font-size: 48px; }
+
+/* ---------- Impressão: um slide por página, tudo revelado ---------- */
+@media print {
+  @page { size: 1920px 1080px; margin: 0; }
+  html, body { height: auto; overflow: visible; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .progresso { display: none; }
+  .deck {
+    position: static;
+    transform: none !important;
+    width: 1920px;
+    height: auto;
+    overflow: visible;
+  }
+  .slide {
+    position: relative;
+    inset: auto;
+    width: 1920px;
+    height: 1080px;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: none !important;
+    break-after: page;
+    page-break-after: always;
+    overflow: hidden;
+  }
+  .fragment { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .carimbo.fragment { transform: rotate(-10deg) !important; }
+}

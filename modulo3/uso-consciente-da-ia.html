@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3 · Uso Consciente da IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- Módulo 3 · Uso Consciente da IA na Aprendizagem
+     Duração prevista: ~18 min (máx. 20). Cada slide indica o bloco do roteiro.
+     Fora deste módulo: causas técnicas, tipos de alucinação, vieses e questões legais (Módulo 6);
+     nomes de ferramentas e configurações (Módulo 4). -->
+<main class="deck" data-rodape="MÓDULO 3 · USO CONSCIENTE DA IA">
+
+  <!-- ===== BLOCO 0 · Abertura (1 min) ===== -->
+
+  <!-- Slide 1: Capa -->
+  <section class="slide capa">
+    <h1>Uso consciente da IA na aprendizagem</h1>
+    <div class="barra"></div>
+    <p class="sub">Módulo 3 · Introdução à IA no Contexto Educacional</p>
+    <p class="apresentador">Com Christian</p>
+    <p class="instituicao">IFSul Campus Pelotas · CSTSI · Atividade de Extensão II</p>
+    <!-- lâmpada com ✓: aprender e conferir -->
+    <svg class="ilustra-capa" viewBox="0 0 240 250" aria-hidden="true">
+      <circle cx="120" cy="100" r="82" fill="none" stroke="#fff" stroke-width="12"/>
+      <path d="M82 102 L110 130 L162 76" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="84" y="196" width="72" height="20" rx="8" fill="#fff"/>
+      <rect x="96" y="224" width="48" height="18" rx="8" fill="#fff"/>
+    </svg>
+  </section>
+
+  <!-- Slide 2: Gancho + pergunta central -->
+  <section class="slide">
+    <p class="kicker">No Módulo 2: IA apoia. Você decide.</p>
+    <h2 class="titulo">Mesma IA, mesma tarefa</h2>
+    <div class="conteudo">
+      <div class="grade-2" style="max-width:1200px; margin:0 auto 56px; width:100%;">
+        <div class="centro fragment">
+          <svg viewBox="0 0 200 220" width="200" height="220" aria-hidden="true">
+            <circle cx="100" cy="58" r="44" fill="#C9D3DA"/>
+            <path d="M28 220 Q28 118 100 118 Q172 118 172 220 Z" fill="#C9D3DA"/>
+            <rect x="120" y="140" width="64" height="76" rx="8" fill="#fff" stroke="#8A949C" stroke-width="6"/>
+            <line x1="134" y1="164" x2="170" y2="164" stroke="#8A949C" stroke-width="6"/>
+            <line x1="134" y1="184" x2="170" y2="184" stroke="#8A949C" stroke-width="6"/>
+          </svg>
+          <p style="font-size:44px; font-weight:700; margin-top:16px;">Uma copia.</p>
+        </div>
+        <div class="centro fragment">
+          <svg viewBox="0 0 200 220" width="200" height="220" aria-hidden="true">
+            <defs>
+              <linearGradient id="gPessoa" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#01CDFF"/><stop offset="1" stop-color="#218BC5"/>
+              </linearGradient>
+            </defs>
+            <circle cx="100" cy="58" r="44" fill="url(#gPessoa)"/>
+            <path d="M28 220 Q28 118 100 118 Q172 118 172 220 Z" fill="url(#gPessoa)"/>
+            <!-- lâmpada acesa: aprendeu -->
+            <circle cx="164" cy="34" r="20" fill="#01CDFF"/>
+            <rect x="155" y="56" width="18" height="10" rx="3" fill="#1A1A1A"/>
+            <g stroke="#1A1A1A" stroke-width="5" stroke-linecap="round">
+              <line x1="164" y1="2" x2="164" y2="8"/>
+              <line x1="190" y1="34" x2="196" y2="34"/>
+              <line x1="138" y1="34" x2="132" y2="34"/>
+              <line x1="183" y1="15" x2="187" y2="11"/>
+              <line x1="145" y1="15" x2="141" y2="11"/>
+            </g>
+          </svg>
+          <p style="font-size:44px; font-weight:700; margin-top:16px;">A outra <span class="marca-texto">aprende</span>.</p>
+        </div>
+      </div>
+      <div class="faixa fragment">Estou usando a IA para <span class="ciano">aprender</span><br>ou só para terminar a atividade?</div>
+    </div>
+  </section>
+
+  <!-- ===== BLOCO 1 · Quando a IA ajuda a aprender (3 min) ===== -->
+
+  <!-- Slide 3: Usos produtivos + exemplo da fotossíntese [REVELAR] -->
+  <section class="slide">
+    <p class="kicker">📚 Apoio ao material e ao professor. Não substitui.</p>
+    <h2 class="titulo">Quando a IA ajuda a aprender</h2>
+    <div class="conteudo">
+      <div class="grade-2x2" style="gap:28px 40px;">
+        <div class="card compacto fragment"><span class="icone">💬</span><span>Explica de outro jeito, com exemplos do dia a dia</span></div>
+        <div class="card compacto fragment"><span class="icone">📝</span><span>Cria exercícios e simulados para praticar</span></div>
+        <div class="card compacto fragment"><span class="icone">🧭</span><span>Dá pistas e aponta erros, sem entregar a solução</span></div>
+        <div class="card compacto fragment"><span class="icone">🗓️</span><span>Ajuda a organizar um plano de estudos</span></div>
+      </div>
+      <div class="painel destaque" style="margin-top:36px; padding:24px 36px;">
+        <p class="rotulo" style="margin-bottom:16px; font-size:38px;">Exemplo: fotossíntese</p>
+        <div style="display:grid; grid-template-columns: 1fr 2.4fr; gap:36px; align-items:center;">
+          <p class="fragment" style="font-size:32px; color:#5F6A72;"><span style="color:#E2626B; font-weight:700;">✗</span> “Escreva uma redação sobre isso.”</p>
+          <div class="passos-lado">
+            <div class="fragment"><span class="n numerados-n">1</span><span>“Não entendi a fotossíntese.”</span></div>
+            <div class="fragment"><span class="n numerados-n">2</span><span>“Me explica de outro jeito?”</span></div>
+            <div class="fragment"><span class="n numerados-n">3</span><span>Agora <strong>eu</strong> explico com minhas palavras.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BLOCO 2 · Apoio ao raciocínio x resposta pronta (3 min) ===== -->
+
+  <!-- Slide 4: Uso passivo x uso ativo + analogia da bicicleta [REVELAR] -->
+  <section class="slide">
+    <h2 class="titulo">Resposta pronta × apoio ao raciocínio</h2>
+    <div class="conteudo">
+      <div class="grade-2" style="gap:48px;">
+        <div class="painel fragment" style="padding:28px 40px;">
+          <p class="rotulo" style="margin-bottom:20px;"><span class="x">✗</span> Uso passivo</p>
+          <ul class="passos compacto">
+            <li>Copia o enunciado</li>
+            <li>Recebe a resposta</li>
+            <li>Entrega sem entender</li>
+          </ul>
+        </div>
+        <div class="painel destaque fragment" style="padding:28px 40px;">
+          <p class="rotulo" style="margin-bottom:20px;"><span class="ok">✓</span> Uso ativo</p>
+          <ul class="passos compacto">
+            <li>Tenta resolver</li>
+            <li>Encontra a dúvida</li>
+            <li>Pede pistas</li>
+            <li>Confere a solução</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card fragment" style="margin-top:28px; padding:16px 40px; font-size:34px;">
+        <svg viewBox="60 60 640 360" width="190" aria-hidden="true" style="flex:none;">
+          <circle cx="180" cy="300" r="104" fill="none" stroke="#1A1A1A" stroke-width="16"/>
+          <circle cx="580" cy="300" r="104" fill="none" stroke="#1A1A1A" stroke-width="16"/>
+          <g stroke="#218BC5" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path d="M180 300 L360 300 L320 160 Z"/>
+            <path d="M320 160 L530 170 L360 300"/>
+            <path d="M530 170 L580 300"/>
+          </g>
+          <path d="M515 130 L530 170 M500 128 L560 120" stroke="#1A1A1A" stroke-width="16" stroke-linecap="round" fill="none"/>
+          <path d="M282 148 L360 148" stroke="#01CDFF" stroke-width="24" stroke-linecap="round"/>
+          <circle cx="360" cy="300" r="24" fill="#01CDFF"/>
+        </svg>
+        <span>A IA pode <span class="marca-texto">segurar o banco</span> enquanto você aprende.<br>Se ela pedalar por você, você não aprende a andar.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: Demonstração 1 – dois pedidos + teste da aprendizagem [REVELAR] -->
+  <section class="slide">
+    <div class="titulo-linha">
+      <h2 class="titulo">Mesmo exercício, dois pedidos</h2>
+      <span class="equacao">2x + 6 = 18</span>
+    </div>
+    <div class="conteudo">
+      <div class="grade-2" style="grid-template-columns: 1fr 1.3fr; gap:40px;">
+        <div class="painel" style="padding:24px 36px;">
+          <p class="rotulo" style="margin-bottom:18px;">Pedido A</p>
+          <div class="chat">
+            <div class="balao aluno">Resolva esta equação.</div>
+            <div class="balao ia fragment">x = 6</div>
+          </div>
+          <p class="comentario fragment">Rápido. Mas o que você aprendeu?</p>
+        </div>
+        <div class="painel destaque" style="padding:24px 36px;">
+          <p class="rotulo" style="margin-bottom:18px;">Pedido B</p>
+          <div class="chat">
+            <div class="balao aluno">Estou aprendendo equações. Não dê a resposta: faça uma pergunta por vez.</div>
+            <div class="balao ia fragment">Qual conta desfaz o “+ 6”?</div>
+            <div class="balao aluno fragment">Tiro 6 dos dois lados: 2x = 12</div>
+            <div class="balao ia fragment">Isso! E agora, como isolar o x?</div>
+          </div>
+        </div>
+      </div>
+      <div class="faixa fragment" style="margin-top:24px; padding:20px 40px; font-size:36px;">
+        Teste: consigo refazer <span class="ciano">sem ajuda</span> e <span class="ciano">explicar</span> o raciocínio?
+        <span class="equacao" style="font-size:40px; padding:4px 24px; margin-left:16px; background:#fff; color:#1A1A1A;">3x + 4 = 19</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BLOCO 3 · Por que não confiar automaticamente (3 min) ===== -->
+
+  <!-- Slide 6: Bem escrito ≠ plausível ≠ comprovado + onde redobrar o cuidado [REVELAR] -->
+  <section class="slide">
+    <p class="kicker">No Módulo 2: ela pode soar segura e estar errada</p>
+    <h2 class="titulo">Parecer certo não é estar certo</h2>
+    <div class="conteudo">
+      <div class="degraus">
+        <div class="degrau d1 fragment">Bem escrito<small>Frases bonitas</small></div>
+        <div class="degrau d2 fragment">Plausível<small>Parece fazer sentido</small></div>
+        <div class="degrau d3 fragment">Comprovado ✓<small>Confirmado em fonte confiável</small></div>
+      </div>
+      <div class="base-degraus"></div>
+      <p class="rotulo fragment" style="margin:28px 0 14px; font-size:36px;">Redobre o cuidado com:</p>
+      <div class="grade-5 fragment" style="gap:20px;">
+        <div class="chip compacto"><span class="icone">🏛️</span>Pesquisas históricas</div>
+        <div class="chip compacto"><span class="icone">📊</span>Dados e estatísticas</div>
+        <div class="chip compacto"><span class="icone">📚</span>Citações de livros</div>
+        <div class="chip compacto"><span class="icone">📖</span>Resumos de obras</div>
+        <div class="chip compacto"><span class="icone">📰</span>Informações recentes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7: Referência fictícia – como descobrir se existe? [REVELAR]
+       Obra inventada só para o exemplo (diferente da usada no Módulo 2). -->
+  <section class="slide">
+    <p class="kicker">Quanto mais importante a informação, maior o cuidado</p>
+    <h2 class="titulo">Esse livro existe?</h2>
+    <div class="conteudo">
+      <div class="citacao">
+        <span class="selo">SIMULAÇÃO DE RESPOSTA DA IA</span>
+        “Segundo COSTA, Helena M. <em>A Matemática dos Povos do Pampa</em>. Pelotas: Editora Horizonte Sul, 2016…”
+      </div>
+      <p class="subtitulo" style="margin-top:48px;">Como descobrir?</p>
+      <div class="grade-3" style="gap:36px;">
+        <div class="card fragment" style="font-size:32px;"><span class="icone" style="font-size:60px;">🔎</span><span>Busque título e autor no catálogo da biblioteca</span></div>
+        <div class="card fragment" style="font-size:32px;"><span class="icone" style="font-size:60px;">🌐</span><span>Procure no Google Acadêmico ou na editora</span></div>
+        <div class="card fragment" style="font-size:32px;"><span class="icone" style="font-size:60px;">📖</span><span>Existe? Confira se diz mesmo aquilo</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BLOCO 4 · Como conferir antes de usar (4 min) ===== -->
+
+  <!-- Slide 8: Método PARE [REVELAR] -->
+  <section class="slide">
+    <h2 class="titulo">Antes de usar: PARE</h2>
+    <div class="conteudo">
+      <div class="grade-4">
+        <div class="letra-pare fragment"><div class="octogono">P</div><h3>Pare e leia</h3><p>Não copie no automático.</p></div>
+        <div class="letra-pare fragment"><div class="octogono">A</div><h3>Analise</h3><p>Faz sentido? Responde à pergunta?</p></div>
+        <div class="letra-pare fragment"><div class="octogono">R</div><h3>Rastreie</h3><p>Ache a fonte e confirme em material confiável.</p></div>
+        <div class="letra-pare fragment"><div class="octogono">E</div><h3>Examine</h3><p>Compare, corrija e decida o que usar.</p></div>
+      </div>
+      <div class="faixa fragment" style="margin-top:52px;">⚠ Perguntar <span class="ciano">“tem certeza?”</span> à própria IA não é conferir.</div>
+    </div>
+  </section>
+
+  <!-- Slide 9: Demonstração 2 – conferindo uma afirmação [REVELAR]
+       Fonte para mostrar na gravação: NASA (nasa.gov), "China's Wall Less Great in View from Space". -->
+  <section class="slide">
+    <h2 class="titulo">Vamos conferir?</h2>
+    <div class="conteudo">
+      <div class="grade-2" style="align-items:center;">
+        <div class="citacao" style="font-size:46px; font-weight:600; padding-bottom:150px;">
+          <span class="selo">SIMULAÇÃO DE RESPOSTA DA IA</span>
+          “A Grande Muralha da China é visível da Lua a olho nu.”
+          <span class="carimbo fragment" data-ordem="4">FALSO</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:28px;">
+          <div class="card fragment" data-ordem="1"><span class="icone">📏</span><span>A muralha tem poucos metros de largura</span></div>
+          <div class="card fragment" data-ordem="2"><span class="icone">🌕</span><span>A Lua fica a cerca de 384 mil km</span></div>
+          <div class="card fragment" data-ordem="3"><span class="icone">👁️</span><span>Seria como ver um fio de cabelo a 3 km</span></div>
+          <p class="nota fragment" data-ordem="5" style="margin-top:8px;">Fonte para conferir: NASA (nasa.gov)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BLOCO 5 · Cuidados no ambiente escolar (2 min) ===== -->
+
+  <!-- Slide 10: Cuidados [REVELAR] -->
+  <section class="slide">
+    <h2 class="titulo">Cuidados no ambiente escolar</h2>
+    <div class="conteudo">
+      <div class="grade-2x2">
+        <div class="card fragment"><span class="icone">🔒</span><span>Nada de senhas, documentos ou dados de colegas</span></div>
+        <div class="card fragment"><span class="icone">⚙️</span><span>Cada serviço tem sua regra de privacidade</span></div>
+        <div class="card fragment"><span class="icone">🤝</span><span>Siga as regras da escola e conte quando usou IA</span></div>
+        <div class="card fragment"><span class="icone">🍎</span><span><strong>Professor:</strong> avalie o raciocínio, não só a resposta</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BLOCO 6 · Fechamento e ponte para o Módulo 4 (2 min) ===== -->
+
+  <!-- Slide 11: Três ideias + checklist do aluno [REVELAR] -->
+  <section class="slide">
+    <h2 class="titulo">O que levar deste módulo</h2>
+    <div class="conteudo">
+      <div class="grade-2" style="grid-template-columns: 1fr 1.1fr; align-items:center;">
+        <div class="ideias">
+          <div class="fragment"><div class="circulo">🚲</div><span>Estude de forma ativa</span></div>
+          <div class="fragment"><div class="circulo">🔎</div><span>Desconfie do que não foi confirmado</span></div>
+          <div class="fragment"><div class="circulo">🛡️</div><span>Preserve sua autonomia e seus dados</span></div>
+        </div>
+        <div class="painel destaque">
+          <p class="rotulo">Antes de entregar, pergunte:</p>
+          <ul class="checklist compacto">
+            <li><span class="caixa"><span class="marcado fragment">✓</span></span>Entendi?</li>
+            <li><span class="caixa"><span class="marcado fragment">✓</span></span>Conferi?</li>
+            <li><span class="caixa"><span class="marcado fragment">✓</span></span>Consigo explicar com minhas palavras?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 12: Mensagem-chave e ponte para o Módulo 4 -->
+  <section class="slide">
+    <div class="conteudo">
+      <p class="frase-gigante">Use a IA para <span class="marca-texto">aprender melhor</span>,<br>não para deixar de aprender.</p>
+      <p class="centro fragment" style="margin-top:72px; font-size:40px; color:#218BC5; font-weight:600;">Próximo módulo: as ferramentas disponíveis e suas configurações, com a Tauane.</p>
+    </div>
+  </section>
+
+</main>
+
+<script src="assets/slides.js"></script>
+</body>
+</html>
